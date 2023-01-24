@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Library.Models.Odunc>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageadmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Yeni")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AldigiTarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VerecegiTarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KitaplarId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OkurId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AldigiTarih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VerecegiTarih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KitaplarId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OkurId)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Duzenle", new { id = item.OduncId }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Sil", "Sil", new { id = item.OduncId }, new { @class = "btn btn-success" })
+        </td>
+    </tr>
+}
+
+</table>

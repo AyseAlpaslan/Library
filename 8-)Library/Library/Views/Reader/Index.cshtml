@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Library.Models.Okur>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageadmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Yeni")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OkurAdSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OkurTelefonu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OkurDogumTarihi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OkurAdSoyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OkurTelefonu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OkurDogumTarihi)
+        </td>
+        <td>
+
+            @Html.ActionLink("Düzenle", "Duzenle", new { id = item.OkurId }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Sil", "Sil", new { id = item.OkurId }, new { @class = "btn btn-success" })
+
+         
+        </td>
+    </tr>
+}
+
+</table>

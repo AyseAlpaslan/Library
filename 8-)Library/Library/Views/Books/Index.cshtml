@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Library.Models.Kitaplar>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageadmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Yeni")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapTuru)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YazarAdSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SayfaSayisi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KitapTuru)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KitapAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YazarAdSoyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SayfaSayisi)
+            </td>
+            <td>
+
+                @Html.ActionLink("Düzenle", "Duzenle", new { id = item.KitaplarId }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Sil", "Sil", new { id = item.KitaplarId }, new { @class = "btn btn-success" })
+
+
+            </td>
+        </tr>
+    }
+
+</table>

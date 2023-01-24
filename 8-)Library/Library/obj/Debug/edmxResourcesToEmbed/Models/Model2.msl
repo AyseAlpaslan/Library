@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model2StoreContainer" CdmEntityContainer="Model2Container">
+    <EntitySetMapping Name="KitaplarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model2.Kitaplar)">
+        <MappingFragment StoreEntitySet="KitaplarSet">
+          <ScalarProperty Name="KitaplarId" ColumnName="KitaplarId" />
+          <ScalarProperty Name="KitapTuru" ColumnName="KitapTuru" />
+          <ScalarProperty Name="KitapAdi" ColumnName="KitapAdi" />
+          <ScalarProperty Name="YazarAdSoyad" ColumnName="YazarAdSoyad" />
+          <ScalarProperty Name="SayfaSayisi" ColumnName="SayfaSayisi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OkurSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model2.Okur)">
+        <MappingFragment StoreEntitySet="OkurSet">
+          <ScalarProperty Name="OkurId" ColumnName="OkurId" />
+          <ScalarProperty Name="OkurAdSoyad" ColumnName="OkurAdSoyad" />
+          <ScalarProperty Name="OkurTelefonu" ColumnName="OkurTelefonu" />
+          <ScalarProperty Name="OkurDogumTarihi" ColumnName="OkurDogumTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model2.Admin)">
+        <MappingFragment StoreEntitySet="AdminSet">
+          <ScalarProperty Name="Uid1" ColumnName="Uid1" />
+          <ScalarProperty Name="Name1" ColumnName="Name1" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password1" ColumnName="Password1" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="createdon" ColumnName="createdon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OduncSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model2.Odunc)">
+        <MappingFragment StoreEntitySet="OduncSet">
+          <ScalarProperty Name="OduncId" ColumnName="OduncId" />
+          <ScalarProperty Name="AldigiTarih" ColumnName="AldigiTarih" />
+          <ScalarProperty Name="VerecegiTarih" ColumnName="VerecegiTarih" />
+          <ScalarProperty Name="KitaplarId" ColumnName="KitaplarId" />
+          <ScalarProperty Name="OkurId" ColumnName="OkurId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

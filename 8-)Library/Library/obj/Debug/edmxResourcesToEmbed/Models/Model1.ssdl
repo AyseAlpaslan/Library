@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="KitaplarSet" EntityType="Model1.Store.KitaplarSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OduncSet" EntityType="Model1.Store.OduncSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OkurSet" EntityType="Model1.Store.OkurSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AdminSet" EntityType="Model1.Store.AdminSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="KitaplarOdunc" Association="Model1.Store.KitaplarOdunc">
+      <End Role="Kitaplar" EntitySet="KitaplarSet" />
+      <End Role="Odunc" EntitySet="OduncSet" />
+    </AssociationSet>
+    <AssociationSet Name="OkurOdunc" Association="Model1.Store.OkurOdunc">
+      <End Role="Okur" EntitySet="OkurSet" />
+      <End Role="Odunc" EntitySet="OduncSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="KitaplarSet">
+    <Key>
+      <PropertyRef Name="KitaplarId" />
+    </Key>
+    <Property Name="KitaplarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapTuru" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitapAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="YazarAdSoyad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SayfaSayisi" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OduncSet">
+    <Key>
+      <PropertyRef Name="OduncId" />
+    </Key>
+    <Property Name="OduncId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AldigiTarih" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VerecegiTarih" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KitaplarId" Type="int" Nullable="false" />
+    <Property Name="OkurId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OkurSet">
+    <Key>
+      <PropertyRef Name="OkurId" />
+    </Key>
+    <Property Name="OkurId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OkurAdSoyad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OkurTelefonu" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OkurDogumTarihi" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AdminSet">
+    <Key>
+      <PropertyRef Name="Uid1" />
+    </Key>
+    <Property Name="Uid1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isActive" Type="tinyint" Nullable="false" />
+    <Property Name="Role" Type="int" Nullable="false" />
+    <Property Name="createdon" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="KitaplarOdunc">
+    <End Role="Kitaplar" Type="Model1.Store.KitaplarSet" Multiplicity="1" />
+    <End Role="Odunc" Type="Model1.Store.OduncSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kitaplar">
+        <PropertyRef Name="KitaplarId" />
+      </Principal>
+      <Dependent Role="Odunc">
+        <PropertyRef Name="KitaplarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OkurOdunc">
+    <End Role="Okur" Type="Model1.Store.OkurSet" Multiplicity="1" />
+    <End Role="Odunc" Type="Model1.Store.OduncSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Okur">
+        <PropertyRef Name="OkurId" />
+      </Principal>
+      <Dependent Role="Odunc">
+        <PropertyRef Name="OkurId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

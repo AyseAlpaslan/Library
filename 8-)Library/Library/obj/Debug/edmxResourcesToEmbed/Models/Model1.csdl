@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="KitaplarSet" EntityType="Model1.Kitaplar" />
+    <EntitySet Name="OduncSet" EntityType="Model1.Odunc" />
+    <EntitySet Name="OkurSet" EntityType="Model1.Okur" />
+    <AssociationSet Name="KitaplarOdunc" Association="Model1.KitaplarOdunc">
+      <End Role="Kitaplar" EntitySet="KitaplarSet" />
+      <End Role="Odunc" EntitySet="OduncSet" />
+    </AssociationSet>
+    <AssociationSet Name="OkurOdunc" Association="Model1.OkurOdunc">
+      <End Role="Okur" EntitySet="OkurSet" />
+      <End Role="Odunc" EntitySet="OduncSet" />
+    </AssociationSet>
+    <EntitySet Name="AdminSet" EntityType="Model1.Admin" />
+  </EntityContainer>
+  <EntityType Name="Kitaplar">
+    <Key>
+      <PropertyRef Name="KitaplarId" />
+    </Key>
+    <Property Name="KitaplarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KitapTuru" Type="String" Nullable="false" />
+    <Property Name="KitapAdi" Type="String" Nullable="false" />
+    <Property Name="YazarAdSoyad" Type="String" Nullable="false" />
+    <Property Name="SayfaSayisi" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Odunc" Relationship="Model1.KitaplarOdunc" FromRole="Kitaplar" ToRole="Odunc" />
+  </EntityType>
+  <EntityType Name="Odunc">
+    <Key>
+      <PropertyRef Name="OduncId" />
+    </Key>
+    <Property Name="OduncId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AldigiTarih" Type="String" Nullable="false" />
+    <Property Name="VerecegiTarih" Type="String" Nullable="false" />
+    <NavigationProperty Name="Kitaplar" Relationship="Model1.KitaplarOdunc" FromRole="Odunc" ToRole="Kitaplar" />
+    <Property Name="KitaplarId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Okur" Relationship="Model1.OkurOdunc" FromRole="Odunc" ToRole="Okur" />
+    <Property Name="OkurId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Okur">
+    <Key>
+      <PropertyRef Name="OkurId" />
+    </Key>
+    <Property Name="OkurId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OkurAdSoyad" Type="String" Nullable="false" />
+    <Property Name="OkurTelefonu" Type="String" Nullable="false" />
+    <Property Name="OkurDogumTarihi" Type="String" Nullable="false" />
+    <NavigationProperty Name="Odunc" Relationship="Model1.OkurOdunc" FromRole="Okur" ToRole="Odunc" />
+  </EntityType>
+  <Association Name="KitaplarOdunc">
+    <End Type="Model1.Kitaplar" Role="Kitaplar" Multiplicity="1" />
+    <End Type="Model1.Odunc" Role="Odunc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kitaplar">
+        <PropertyRef Name="KitaplarId" />
+      </Principal>
+      <Dependent Role="Odunc">
+        <PropertyRef Name="KitaplarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OkurOdunc">
+    <End Type="Model1.Okur" Role="Okur" Multiplicity="1" />
+    <End Type="Model1.Odunc" Role="Odunc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Okur">
+        <PropertyRef Name="OkurId" />
+      </Principal>
+      <Dependent Role="Odunc">
+        <PropertyRef Name="OkurId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Uid1" />
+    </Key>
+    <Property Name="Uid1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name1" Type="String" Nullable="false" />
+    <Property Name="UserId" Type="String" Nullable="false" />
+    <Property Name="Password1" Type="String" Nullable="false" />
+    <Property Name="isActive" Type="Byte" Nullable="false" />
+    <Property Name="Role" Type="Int32" Nullable="false" />
+    <Property Name="createdon" Type="DateTime" Nullable="false" />
+  </EntityType>
+</Schema>
